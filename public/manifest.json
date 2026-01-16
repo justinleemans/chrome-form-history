@@ -3,13 +3,25 @@
     "name": "Form History",
     "version": "2026.01.16",
     "description": "A Chrome extension to manage and restore form entries",
+    "icons": {
+        "16": "icons/icon-16.png",
+        "32": "icons/icon-32.png",
+        "48": "icons/icon-48.png",
+        "128": "icons/icon-128.png"
+    },
     "permissions": [
         "storage",
         "activeTab",
         "scripting"
     ],
     "action": {
-        "default_popup": "popup/index.html"
+        "default_popup": "popup/index.html",
+        "default_icon": {
+            "16": "icons/icon-16.png",
+            "32": "icons/icon-32.png",
+            "48": "icons/icon-48.png",
+            "128": "icons/icon-128.png"
+        }
     },
     "content_scripts": [
         {
