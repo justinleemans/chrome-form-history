@@ -4,7 +4,7 @@
     </div>
     <div class="record-buttons">
         <button v-for="record in records" :key="record.timestamp" @click="fill(record)">
-            {{ record.timestamp }}
+            {{ new Date(record.timestamp).toLocaleString() }}
         </button>
     </div>
 </template>
