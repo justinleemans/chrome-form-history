@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "Form History",
+    "version": "2026.01.16",
+    "description": "A Chrome extension to manage and restore form entries",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting"
+    ],
+    "action": {
+        "default_popup": "popup/index.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content/content.js"
+            ]
+        }
+    ]
+}
