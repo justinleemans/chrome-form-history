@@ -7,6 +7,9 @@
             {{ new Date(record.timestamp).toLocaleString() }}
         </button>
     </div>
+    <div class="footer">
+        <small><a href="https://buymeacoffee.com/justinleemans" target="_blank">Support this project</a></small>
+    </div>
 </template>
 
 <script setup>
