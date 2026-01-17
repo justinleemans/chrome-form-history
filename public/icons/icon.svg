@@ -1,19 +1,41 @@
-<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="128" y2="128">
+    <!-- Purple gradient background (unchanged) -->
+    <linearGradient
+      id="bgGradient"
+      x1="0"
+      y1="0"
+      x2="128"
+      y2="128"
+      gradientUnits="userSpaceOnUse"
+    >
       <stop offset="0%" stop-color="#8E2DE2"/>
       <stop offset="100%" stop-color="#4A00E0"/>
     </linearGradient>
   </defs>
 
   <!-- Background -->
-  <rect width="128" height="128" rx="24" fill="url(#bg)"/>
+  <rect
+    x="0"
+    y="0"
+    width="128"
+    height="128"
+    rx="24"
+    fill="url(#bgGradient)"
+  />
 
   <!-- Form document -->
-  <rect x="34" y="26" width="60" height="76" rx="8" fill="#FFFFFF"/>
+  <rect
+    x="32"
+    y="24"
+    width="64"
+    height="80"
+    rx="8"
+    fill="white"
+  />
 
-  <!-- Form lines (thick enough for 16px) -->
-  <rect x="42" y="44" width="44" height="8" rx="4" fill="#E6DDFC"/>
-  <rect x="42" y="60" width="44" height="8" rx="4" fill="#E6DDFC"/>
-  <rect x="42" y="76" width="32" height="8" rx="4" fill="#E6DDFC"/>
+  <!-- Form lines (optimized for small sizes) -->
+  <rect x="40" y="44" width="48" height="8" rx="4" fill="#E0D7F9"/>
+  <rect x="40" y="62" width="48" height="8" rx="4" fill="#E0D7F9"/>
+  <rect x="40" y="80" width="32" height="8" rx="4" fill="#E0D7F9"/>
 </svg>
