@@ -10,6 +10,7 @@ The project is build with a combination of Vite + Vue.js. Where Vite serves as t
 - [Quick Start](#quick-start)
 - [User Guide](#user-guide)
 - [Contributing](#contributing)
+- [Sponsor](#sponsor)
 
 ## Installation
 
@@ -34,6 +35,6 @@ To refill a form with earlier submitted data simply click the extension icon to 
 
 All contributions are welcome and I will gladly take all the support I can get on this project. If you want to contribute please visit the [contribution guide](.github/CONTRIBUTING.md) for details on how to contribute.
 
-## Sponser
+## Sponsor
 
 If you want to support this project or want to buy me a coffee you can do so [here](https://buymeacoffee.com/justinleemans).
