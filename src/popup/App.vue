@@ -1,30 +1,18 @@
 <template>
-    <div v-if="records.length === 0">
-        No saved history for this URL.
+    <div class="record-container">
+        <span v-if="records.length === 0" class="no-records-label">No saved history for this URL.</span>
+        <Record v-else v-for="record in records" :key="record.timestamp" :record="record" @fill="fill"/>
     </div>
-    <div class="record-buttons">
-        <button v-for="record in records" :key="record.timestamp" @click="fill(record)">
-            {{ new Date(record.timestamp).toLocaleString() }}
-        </button>
-    </div>
-    <div class="footer">
-        <small><a href="https://buymeacoffee.com/justinleemans" target="_blank">Support this project</a></small>
-    </div>
+    <Footer/>
 </template>
 
 <script setup>
+    import Footer from './components/Footer.vue';
+    import Record from './components/Record.vue';
+
     import { ref, onMounted } from 'vue';
 
     const records = ref([]);
-
-    onMounted(async () => {
-        chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
-            const url = new URL(tabs[0].url);
-            const { history = [] } = await chrome.storage.session.get("history");
-            const entries = history[url] || [];
-            records.value = entries;
-        });
-    });
 
     function fill(record) {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -42,4 +30,13 @@
             });
         });
     }
+
+    onMounted(async () => {
+        chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+            const url = new URL(tabs[0].url);
+            const { history = [] } = await chrome.storage.session.get("history");
+            const entries = history[url] || [];
+            records.value = entries;
+        });
+    });
 </script>
