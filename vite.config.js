@@ -1,38 +1,23 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { resolve } from 'path';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { crx } from '@crxjs/vite-plugin'
+import manifest from './manifest.config.js'
+import zip from 'vite-plugin-zip-pack'
+import { name, version } from './package.json'
 
 export default defineConfig({
-    root: "src",
-    build: {
-        outDir: "../dist",
-        emptyOutDir: true,
-        rollupOptions: {
-            input: {
-                popup: resolve(__dirname, 'src/popup/index.html'),
-                content: resolve(__dirname, 'src/content/content.js'),
-                background: resolve(__dirname, 'src/background/background.js')
-            },
-            output: {
-                entryFileNames: "[name]/[name].js",
-                assetFileNames: "[name]/[name].[ext]"
-            }
-        }
-    },
     plugins: [
         vue(),
-        viteStaticCopy({
-            targets: [
-                {
-                    src: "../public/manifest.json",
-                    dest: "."
-                },
-                {
-                    src: "../public/icons/*.png",
-                    dest: "icons"
-                }
-            ]
-        })
-    ]
+        crx({
+            manifest
+        }),
+        zip({ outDir: 'build', outFileName: `${name}-${version}.zip` }),
+    ],
+    server: {
+        cors: {
+            origin: [
+                /chrome-form-history:\/\//,
+            ],
+        },
+    },
 });
