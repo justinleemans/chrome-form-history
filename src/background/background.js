@@ -28,7 +28,7 @@ async function getFormHistoryCount() {
                 return;
             }
 
-            const { history = {} } = await chrome.storage.session.get("history");
+            const { history = {} } = await chrome.storage.local.get("history");
             const entries = history[url] || [];
 
             resolve(entries.length);
@@ -47,7 +47,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 });
 
 chrome.storage.onChanged.addListener((changes, area) => {
-	if (area === "session" && changes.history) {
+	if (area === "local" && changes.formEntries) {
 		updateBadge();
 	}
 });

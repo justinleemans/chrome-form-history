@@ -20,7 +20,7 @@
     onMounted(async () => {
         chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
             const url = new URL(tabs[0].url);
-            const { history = [] } = await chrome.storage.session.get("history");
+            const { history = [] } = await chrome.storage.local.get("history");
             const entries = history[url] || [];
             records.value = entries;
         });
