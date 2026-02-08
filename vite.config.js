@@ -3,7 +3,6 @@ import vue from '@vitejs/plugin-vue';
 import { crx } from '@crxjs/vite-plugin'
 import manifest from './manifest.config.js'
 import zip from 'vite-plugin-zip-pack'
-import { name, version } from './package.json'
 
 export default defineConfig({
     plugins: [
@@ -11,7 +10,7 @@ export default defineConfig({
         crx({
             manifest
         }),
-        zip({ outDir: 'build', outFileName: `${name}-${version}.zip` }),
+        zip({ outDir: 'build', outFileName: `${manifest.name}-${manifest.version}.zip` }),
     ],
     server: {
         cors: {
