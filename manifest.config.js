@@ -3,7 +3,7 @@ import { defineManifest } from '@crxjs/vite-plugin'
 export default defineManifest({
     "manifest_version": 3,
     "name": "Form History",
-    "version": "2026.01.16",
+    "version": "2026.02.08",
     "description": "A Chrome extension to refill form data from history",
     "icons": {
         "16": "public/icon-16.png",
