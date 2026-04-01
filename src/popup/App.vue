@@ -1,7 +1,9 @@
 <template>
-    <div class="record-container">
-        <span v-if="records.length === 0" class="no-records-label">No saved history for this URL.</span>
-        <Record v-else v-for="record in records" :key="record.timestamp" :record="record" @fill="fill"/>
+    <span v-if="records.length === 0" class="no-records-label">
+        No saved history for this URL.
+    </span>
+    <div class="record-buttons">
+        <Record v-for="record in records" :key="record.timestamp" :record="record" @fill="fill"/>
     </div>
     <Footer/>
 </template>
