@@ -1,16 +1,16 @@
 <template>
-    <span v-if="records.length === 0" class="no-records-label">
+    <span v-if="records.length === 0">
         No saved history for this URL.
     </span>
-    <div class="record-buttons">
+    <div class="flex flex-col gap-3 items-stretch mb-[1.5em]">
         <Record v-for="record in records" :key="record.timestamp" :record="record" @fill="fill"/>
     </div>
     <Footer/>
 </template>
 
 <script setup>
-    import Footer from './components/Footer.vue';
-    import Record from './components/Record.vue';
+    import Footer from './components/footer/Footer.vue';
+    import Record from './components/records/Record.vue';
 
     import { ref, onMounted } from 'vue';
 
@@ -36,7 +36,7 @@
     onMounted(async () => {
         chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
             const url = new URL(tabs[0].url);
-            const { history = [] } = await chrome.storage.session.get("history");
+            const { history = [] } = await chrome.storage.local.get("history");
             const entries = history[url] || [];
             records.value = entries;
         });
