@@ -37,7 +37,8 @@
     onMounted(async () => {
         chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
             const url = new URL(tabs[0].url);
-            records.value = await getFromStorage(url.href) || [];
+            const result = await getFromStorage(url.href) || [];
+            records.value = result.sort((a, b) => b.timestamp - a.timestamp);
         });
     });
 </script>
