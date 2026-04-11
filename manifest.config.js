@@ -37,5 +37,11 @@ export default defineManifest({
                 "src/content/content.js"
             ]
         }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["src/content/inject.js"],
+            "matches": ["<all_urls>"]
+        }
     ]
 });
