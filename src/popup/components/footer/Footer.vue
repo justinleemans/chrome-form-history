@@ -3,5 +3,12 @@
 </template>
 
 <script setup>
-    const supportLink = "https://buymeacoffee.com/justinleemans";
+    const props = defineProps({
+        supportLink: {
+            type: String,
+            default: "https://buymeacoffee.com/justinleemans"
+        }
+    });
+
+    const supportLink = props.supportLink;
 </script>

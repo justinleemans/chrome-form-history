@@ -3,7 +3,7 @@
         No saved history for this URL.
     </span>
     <div class="flex flex-col gap-3 items-stretch mb-[1.5em]">
-        <Record v-for="record in records" :key="record.timestamp" :record="record" @fill="fill"/>
+        <Record v-for="record in records" :key="record.timestamp" :record="record"/>
     </div>
     <Footer/>
 </template>
@@ -16,23 +16,6 @@
     import { getFromStorage } from '../storage/storage';
 
     const records = ref([]);
-
-    function fill(record) {
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            chrome.scripting.executeScript({
-                target: { tabId: tabs[0].id },
-                func: (formData) => {
-                    for (const [key, val] of Object.entries(formData)) {
-                        const el = document.querySelector(`[name="${key}"]`);
-                        if (el) {
-                            el.value = val;
-                        }
-                    }
-                },
-                args: [record.data],
-            });
-        });
-    }
 
     onMounted(async () => {
         chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
