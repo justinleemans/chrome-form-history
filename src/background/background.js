@@ -1,3 +1,5 @@
+import { countFromStorage } from "../storage/storage";
+
 async function updateBadge() {
 	let count = await getFormHistoryCount();
     let label = "";
@@ -12,7 +14,6 @@ async function updateBadge() {
 }
 
 async function getFormHistoryCount() {
-	const records = [];
     return new Promise((resolve) => {
         chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
             if (!tabs[0] || !tabs[0].url) {
@@ -28,10 +29,7 @@ async function getFormHistoryCount() {
                 return;
             }
 
-            const { history = {} } = await chrome.storage.local.get("history");
-            const entries = history[url] || [];
-
-            resolve(entries.length);
+            resolve(await countFromStorage(url));
         });
     });
 }

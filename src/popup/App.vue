@@ -13,6 +13,7 @@
     import Record from './components/records/Record.vue';
 
     import { ref, onMounted } from 'vue';
+    import { getFromStorage } from '../storage/storage';
 
     const records = ref([]);
 
@@ -36,9 +37,7 @@
     onMounted(async () => {
         chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
             const url = new URL(tabs[0].url);
-            const { history = [] } = await chrome.storage.local.get("history");
-            const entries = history[url] || [];
-            records.value = entries;
+            records.value = await getFromStorage(url.href) || [];
         });
     });
 </script>
